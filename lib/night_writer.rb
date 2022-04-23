@@ -1,3 +1,3 @@
-file = File.open("./lib/#{ARGV[0]}", "r")
-file.close
-p "Created #{ARGV[1]} containing 256 characters"
+file = File.read("./lib/#{ARGV[0]}").split(' ')
+counter = file.length
+p "Created #{ARGV[1]} containing #{counter} characters"
