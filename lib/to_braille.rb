@@ -30,11 +30,33 @@ class ToBraille
               "w" => [".0","00",".0"],
               "x" => ["00","..","00"],
               "y" => ["00",".0","00"],
-              "z" => ["0.",".0","00"]
+              "z" => ["0.",".0","00"],
+              " " => ["..","..",".."]
     }
+    @counter = message.length
   end
 
   def translate_letter(char)
     @braille_hash[char]
   end
+
+  def translate_message(message)
+    translation_array = Array.new(0)
+    message.split('').each do |char|
+      translation_array.append(translate_letter(char))
+    end
+    translation_array
+  end
+
+  def format_message
+    translated_array = ["","",""]
+    i = 0
+    translate_message(@message).each do |line|
+      for i in 0..2
+        translated_array[i].concat(line[i])
+      end
+    end
+    translated_array
+  end
+
 end
