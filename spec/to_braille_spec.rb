@@ -24,7 +24,17 @@ describe ToBraille do
 
   it 'displays translation correctly' do
     ab_to_br = ToBraille.new("ab")
-    expect(ab_to_br.format_message).to eq(["0.0.", "..0.", "...."])
+    expect(ab_to_br.format_message(ab_to_br.message)).to eq(["0.0.", "..0.", "...."])
+  end
+
+  it 'can translate over 40 characters correctly' do
+    ahh = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    aaa_to_br = ToBraille.new(ahh)
+    aaarray = ["0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.",
+               "................................................................................",
+               "................................................................................"],
+              ["0.","..",".."]
+    expect(aaa_to_br.translate).to eq(aaarray)
   end
 
 end

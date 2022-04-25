@@ -48,15 +48,25 @@ class ToBraille
     translation_array
   end
 
-  def format_message
+  def format_message(message)
     translated_array = ["","",""]
     i = 0
-    translate_message(@message).each do |line|
+    translate_message(message).each do |line|
       for i in 0..2
         translated_array[i].concat(line[i])
       end
     end
     translated_array
+  end
+
+  def translate
+    encoded_array = Array.new(0)
+    if @counter > 40
+      @message.split('').each_slice(40){|block| encoded_array << format_message(block.join(''))}
+      encoded_array
+    else
+      format_message(@message)
+    end
   end
 
 end
