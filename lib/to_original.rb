@@ -28,8 +28,13 @@ class ToOriginal < ToBraille
 
   def translate_message
     translation_string = ""
+    i = 0
     format_message(@omessage).each do |braille|
       translation_string.concat(translate_braille(braille))
+      if (i + 1) % 80 == 0
+        translation_string.concat("\n")
+      end
+      i += 1
     end
     translation_string
   end
