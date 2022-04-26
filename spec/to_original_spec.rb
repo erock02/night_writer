@@ -5,7 +5,7 @@ require './lib/to_original'
 
 describe ToOriginal do
   it 'exists' do
-    br_to_o = ToOriginal.new("a")
+    br_to_o = ToOriginal.new(["0.","..",".."])
     expect(br_to_o).to be_an_instance_of(ToOriginal)
   end
 
@@ -43,4 +43,10 @@ describe ToOriginal do
     br_to_o = ToOriginal.new("a")
     expect(br_to_o.original_hash).to eq(braille_to_original)
   end
+
+  it 'can translate a braille array to letter' do
+    br_to_o = ToOriginal.new(["0.","..",".."])
+    expect(br_to_o.translate_braille(br_to_o.omessage)).to eq("a")
+  end
+
 end
