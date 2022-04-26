@@ -20,8 +20,8 @@ describe ToOriginal do
               ["00","00",".."]  => "g",
               ["0.","00",".."]  => "h",
               [".0","0.",".."]  => "i",
-              ["0.","00",".."]  => "j",
-              ["0.","0.","0."]  => "k",
+              [".0","00",".."]  => "j",
+              ["0.","..","0."]  => "k",
               ["0.","0.","0."]  => "l",
               ["00","..","0."]  => "m",
               ["00",".0","0."]  => "n",
@@ -49,9 +49,14 @@ describe ToOriginal do
     expect(br_to_o.translate_braille(br_to_o.omessage)).to eq("a")
   end
 
+  it 'can format a braille string to an array' do
+    br_to_o = ToOriginal.new("0.....")
+    expect(br_to_o.format_message(br_to_o.omessage)[0]).to eq(["0.","..",".."])
+  end
+
   it 'can translate multiple braille characters' do
-    br_to_o = ToOriginal.new([["0.","..",".."], ["0.","0.",".."]])
-    expect(br_to_o.translate_message(br_to_o.omessage)).to eq("ab")
+    br_to_o = ToOriginal.new("0.0...0.....")
+    expect(br_to_o.translate_message).to eq("ab")
   end
 
 end
