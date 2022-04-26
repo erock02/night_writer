@@ -9,4 +9,8 @@ class ToOriginal < ToBraille
     @original_hash = @braille_hash.invert
   end
 
+  def translate_braille(braille_array)
+    @original_hash[braille_array]
+  end
+
 end
