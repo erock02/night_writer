@@ -13,4 +13,12 @@ class ToOriginal < ToBraille
     @original_hash[braille_array]
   end
 
+  def translate_message(message)
+    translation_string = ""
+    message.each do |braille|
+      translation_string.concat(translate_braille(braille))
+    end
+    translation_string
+  end
+
 end
