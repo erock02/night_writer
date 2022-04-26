@@ -33,7 +33,6 @@ class ToBraille
               "z" => ["0.",".0","00"],
               " " => ["..","..",".."]
     }
-    @counter = message.length
   end
 
   def translate_letter(char)
@@ -61,7 +60,7 @@ class ToBraille
 
   def translate
     encoded_array = Array.new(0)
-    if @counter > 40
+    if @message.length > 40
       @message.split('').each_slice(40){|block| encoded_array << format_message(block.join(''))}
       encoded_array
     else
